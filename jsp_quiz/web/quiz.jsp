@@ -42,10 +42,12 @@
   </div>
 
   <div class="container">
-    Category: ${category}
-    Type: ${type}
-    Number of Items: ${num_items}
-    Data: ${data}
+    <p>Category: ${category}</p>
+    <p>Type: ${type}</p>
+    <p>Number of Items: ${num_items}</p>
+    <p>ID: ${id}</p>
+    <p>Questions: ${question}</p>
+    <p>Answers: ${answer}</p>
   </div>
 
   <!-- scripts -->
