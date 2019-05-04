@@ -45,6 +45,7 @@
     Category: ${category}
     Type: ${type}
     Number of Items: ${num_items}
+    Data: ${data}
   </div>
 
   <!-- scripts -->

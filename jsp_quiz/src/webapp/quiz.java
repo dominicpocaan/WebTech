@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 @WebServlet(name = "quiz")
 public class quiz extends HttpServlet {
@@ -14,6 +14,8 @@ public class quiz extends HttpServlet {
     request.setAttribute("category", request.getParameter("category"));
     request.setAttribute("type", request.getParameter("type"));
     request.setAttribute("num_items", request.getParameter("num_items"));
+    String result = new Test().getData();
+    request.setAttribute("data", result);
 
     request.getRequestDispatcher("/quiz.jsp").forward(request, response);
   }
