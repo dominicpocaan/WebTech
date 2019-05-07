@@ -47,7 +47,7 @@
     int itemNumber = (int) session.getAttribute("itemNumber");
   %>
   <div class="container-fluid bg-light py-4">
-    <form class="form" role="form" autocomplete="off" action="" method="POST">
+    <form class="form" role="form" autocomplete="off" action="/quiz" method="POST">
       <div class="row">
         <div class="col-md-6 mx-auto">
           <div class="card card-body">
@@ -78,19 +78,13 @@
     </form>
   </div>
 
+  <div class="container-fluid bg-light py-4">
+
+  </div>
+
   <div class="container">
-    <h1>Test</h1>
+    <h1>Test: Current Data</h1>
     <%
-      String category = (String) session.getAttribute("category");
-      String type = (String) session.getAttribute("type");
-      String num_items = (String) session.getAttribute("num_items");
-      out.print("<h4> Category </h4>");
-      out.print("<p>" + category + "</p>");
-      out.print("<h4> Type </h4>");
-      out.print("<p>" + type + "</p>");
-      out.print("<h4> Number of Items </h4>");
-      out.print("<p>" + num_items + "</p>");
-      out.print("<h4> Data </h4>");
       for (int i = 0; i < questions.size(); i++) {
         out.print("<p> " + questions.get(i).getQuestion() + "</p>");
       }

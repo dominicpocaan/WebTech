@@ -33,26 +33,36 @@ public class QuizServlet extends HttpServlet {
       session.setAttribute("orgQuestion", orgQuestion);
       session.setAttribute("questions", questions);
       session.setAttribute("itemNumber", 0);
-
-      session.setAttribute("category", request.getParameter("category"));
-      session.setAttribute("type", request.getParameter("type"));
-      session.setAttribute("num_items", request.getParameter("num_items"));
     } else if(activity.equals("Next")) {
-      int currentItemNumber = (int) session.getAttribute("itemNumber");
       int nextItemNumber = (int) session.getAttribute("itemNumber") + 1;
-
       session.setAttribute("itemNumber", nextItemNumber);
-
-//      String userAnswer = request.getParameter("user_answer");
-//      if (userAnswer.replaceAll("\\s+","").length() != 0) {
-//        questions.get(currentItemNumber).setUserAnswer(userAnswer);
-//        questions.get(currentItemNumber).setQuestion(orgQuestion.get(currentItemNumber).replace("question", "<input value=\"" + userAnswer + "\"name=\"user_answer\" type=\"text\" style=\"width: " + (questions.get(currentItemNumber).getCorrectAnswer().length() * 15) +"px\">"));
-//      }
-//
-//      session.setAttribute("questions", questions);
     } else if(activity.equals("Previous")) {
-      int nextItemNumber = (int) session.getAttribute("itemNumber") - 1;
-      session.setAttribute("itemNumber", nextItemNumber);
+      int previousItemNumber = (int) session.getAttribute("itemNumber") - 1;
+      session.setAttribute("itemNumber", previousItemNumber);
+    }
+
+    if (activity.equals("Next") || activity.equals("Previous")) {
+      int currentItemNumber = (int) session.getAttribute("itemNumber");
+      if (activity.equals("Next")) {
+        currentItemNumber--;
+      } else {
+        currentItemNumber++;
+      }
+
+      ArrayList<String> sessionOrgQuestion;
+      ArrayList<Question> sessionQuestions;
+      sessionQuestions = (ArrayList<Question>) session.getAttribute("questions");
+      sessionOrgQuestion = (ArrayList<String>) session.getAttribute("orgQuestion");
+
+      String userAnswer = request.getParameter("user_answer");
+      session.setAttribute("previousAnswer", userAnswer);
+      if (userAnswer.replaceAll("\\s+","").length() != 0) {
+        sessionQuestions.get(currentItemNumber).setUserAnswer(userAnswer);
+        sessionQuestions.get(currentItemNumber).setQuestion(sessionOrgQuestion.get(currentItemNumber).replace("question", "<input value=\"" + userAnswer + "\"name=\"user_answer\" type=\"text\" style=\"width: " + (sessionQuestions.get(currentItemNumber).getCorrectAnswer().length() * 15) +"px\">"));
+      }
+
+      session.setAttribute("orgQuestion", sessionOrgQuestion);
+      session.setAttribute("questions", sessionQuestions);
     }
 
     request.getRequestDispatcher("/quiz.jsp").forward(request, response);
