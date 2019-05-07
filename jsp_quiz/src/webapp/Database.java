@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 public class Database {
   Connection connection;
+
   public Connection getConnection() {
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -18,20 +19,25 @@ public class Database {
     return connection;
   }
 
-  public ArrayList<Question> getQuestions() throws SQLException {
-    ArrayList<Question> questions = new ArrayList<>();
+  public ArrayList<Question> getQuestions(int num_items) throws SQLException {
+    ArrayList<Question> questionsQueried = new ArrayList<>();
+    ArrayList<Question> questionsFinal   = new ArrayList<>();
 
     Database db = new Database();
     Connection con = db.getConnection();
 
     Statement stmt = con.createStatement();
-    ResultSet rs = stmt.executeQuery("select * from questions");
+    ResultSet rs = stmt.executeQuery("SELECT * FROM fillintheblanks");
 
     while(rs.next()) {
-      Question question = new Question(rs.getInt("id"), rs.getString("question"), rs.getString("answer"));
-      questions.add(question);
+      Question question = new Question(rs.getInt("id"), rs.getInt("category"), rs.getString("question"), rs.getString("correctAnswer"), null);
+      questionsQueried.add(question);
     }
 
-    return questions;
+    for (int i = 0; i < num_items; i++) {
+      questionsFinal.add(questionsQueried.get(i));
+    }
+
+    return questionsFinal;
   }
 }

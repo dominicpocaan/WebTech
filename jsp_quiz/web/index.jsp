@@ -69,12 +69,11 @@
             </select>
           </div>
 
-
           <div class="form-group">
             <input class="form-control input-lg" placeholder="Number of Items" name="num_items" type="text">
           </div>
 
-          <input class="btn btn-lg btn-primary btn-block" value="Start Quiz" type="submit">
+          <input class="btn btn-lg btn-primary btn-block" value="Start Quiz" name="activity" type="submit">
         </div>
       </div>
     </div>
