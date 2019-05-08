@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="webapp.Question" %><%--
+<%@ page import="webapp.Question" %>
+<%--
   Created by IntelliJ IDEA.
   User: Dominic
   Date: 5/3/2019
@@ -60,12 +61,13 @@
               <div class="col-md-6 mx-auto">
                 <div class="d-flex justify-content-center">
                   <%
-                    if (itemNumber == 0) {
+                    if (itemNumber == 0 && questions.size() > 1) {
                       out.print("<input class=\"btn btn-primary\" value=\"Next\" name=\"activity\" type=\"submit\">");
-                    } else if (itemNumber == questions.size() - 1){
+                    } else if (itemNumber == questions.size() - 1 && questions.size() > 1){
                       out.print("<input class=\"btn btn-primary\" value=\"Previous\" name=\"activity\" type=\"submit\">");
-                    } else {
-                      out.print("<input class=\"btn btn-primary\" value=\"Previous\" name=\"activity\" type=\"submit\">");
+                      out.print("<br><br><input class=\"btn btn-lg btn-outline-primary btn-block\" value=\"Submit\" name=\"activity\" name type=\"submit\">");
+                    } else if (questions.size() > 1) {
+                      out.print("<input class=\"btn btn-primary\" value=\"Previous\" name=\"activity\" type=\"submit\" style=\"margin-right: 20px;\">");
                       out.print("<input class=\"btn btn-primary\" value=\"Next\" name=\"activity\" type=\"submit\">");
                     }
                   %>
@@ -78,8 +80,21 @@
     </form>
   </div>
 
-  <div class="container-fluid bg-light py-4">
-
+  <div class="container bg-light py-4">
+    <form class="form" role="form" autocomplete="off" action="/check" method="POST">
+      <h4>Questions Status: </h4>
+      <hr>
+      <%
+        for (int i = 0; i < questions.size(); i++) {
+          if (questions.get(i).getUserAnswer() != null) {
+            out.print("<div class=\"text-center alert alert-success\" role=\"alert\" style=\"float: left; width:148px; margin: 5px 5px 0px 5px;\"> Question #" + (i + 1) + "</div>");
+          } else {
+            out.print("<div class=\"text-center alert alert-danger\" role=\"alert\" style=\"float: left; width: 148px; margin: 5px 5px 0px 5px;\"> Question #" + (i + 1) + "</div>");
+          }
+        }
+      %>
+      <div class="clearfix"></div>
+    </form>
   </div>
 
   <div class="container">

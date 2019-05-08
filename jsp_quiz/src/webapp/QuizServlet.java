@@ -27,26 +27,30 @@ public class QuizServlet extends HttpServlet {
 
       for (int x = 0; x < questions.size(); x++) {
         orgQuestion.add(questions.get(x).getQuestion());
-        questions.get(x).setQuestion(questions.get(x).getQuestion().replace("question", "<input name=\"user_answer\" type=\"text\" style=\"width: " + (questions.get(x).getCorrectAnswer().length() * 15) +"px\">"));
+        questions.get(x).setQuestion(questions.get(x).getQuestion().replace("question", "<input name=\"user_answer\" type=\"text\" style=\"width: " + (questions.get(x).getCorrectAnswer().length() * 15) +"px;\">"));
       }
 
       session.setAttribute("orgQuestion", orgQuestion);
       session.setAttribute("questions", questions);
       session.setAttribute("itemNumber", 0);
-    } else if(activity.equals("Next")) {
-      int nextItemNumber = (int) session.getAttribute("itemNumber") + 1;
-      session.setAttribute("itemNumber", nextItemNumber);
-    } else if(activity.equals("Previous")) {
+    } else if (activity.equals("Previous")) {
       int previousItemNumber = (int) session.getAttribute("itemNumber") - 1;
       session.setAttribute("itemNumber", previousItemNumber);
+    } else if (activity.equals("Next")) {
+      int nextItemNumber = (int) session.getAttribute("itemNumber") + 1;
+      session.setAttribute("itemNumber", nextItemNumber);
     }
 
-    if (activity.equals("Next") || activity.equals("Previous")) {
+    if (activity.equals("Next") || activity.equals("Previous") || activity.equals("Submit")) {
+      questions = (ArrayList<Question>) session.getAttribute("questions");
+
       int currentItemNumber = (int) session.getAttribute("itemNumber");
       if (activity.equals("Next")) {
         currentItemNumber--;
-      } else {
+      } else if (activity.equals("Previous")) {
         currentItemNumber++;
+      } else if (activity.equals("Submit")) {
+        currentItemNumber = questions.size() - 1;
       }
 
       ArrayList<String> sessionOrgQuestion;
@@ -63,6 +67,24 @@ public class QuizServlet extends HttpServlet {
 
       session.setAttribute("orgQuestion", sessionOrgQuestion);
       session.setAttribute("questions", sessionQuestions);
+    }
+
+    if (activity.equals("Submit")) {
+      questions = (ArrayList<Question>) session.getAttribute("questions");
+      int result = 0;
+
+      for (int i = 0; i < questions.size(); i++) {
+        String userAnswer = questions.get(i).getUserAnswer();
+        String correctAnswer = questions.get(i).getCorrectAnswer();
+
+        if (userAnswer.equals(correctAnswer)) {
+          result++;
+        }
+      }
+
+      request.setAttribute("result", result);
+
+      request.getRequestDispatcher("/result.jsp").forward(request, response);
     }
 
     request.getRequestDispatcher("/quiz.jsp").forward(request, response);
