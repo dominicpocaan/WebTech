@@ -4,134 +4,105 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebTech Quiz</title>
-  <!-- <link rel="shortcut icon" href=""> -->
+  <link rel="shortcut icon" href="images/logo.png">
 
   <!-- styles -->
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/uikit.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <!-- styles -->
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="#">WebTech Quiz</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-	    <ul class="navbar-nav">
-	      <!-- <li class="nav-item">
-	        <a class="nav-link" href="#">Link</a>
-	      </li> -->
-	    </ul>
+	<div class="uk-container-expand" uk-grid>
+	  <div class="uk-width-3-4">
+	    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-xlarge" style="width: 70%;">
+        	<h3 class="uk-card-title uk-text-center">Question #</h3>
+          <form>
+          	<p>Check Box</p>
+          	<div class="uk-container-expand" uk-grid>
+          		<div class="uk-width-1-2">
+          			<label class="container">A. Answer A
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
+          		</div>
+
+          		<div class="uk-width-1-2">
+          			<label class="container">B. Answer B
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
+          		</div>
+
+          		<div class="uk-width-1-2">
+          			<label class="container">C. Answer C
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
+          		</div>
+
+          		<div class="uk-width-1-2">
+          			<label class="container">D. Answer D
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
+          		</div>
+          	</div>
+						
+						<p>Radio Button</p>
+          	<div class="uk-container-expand" uk-grid>
+          		<div class="uk-width-1-2">
+	          		<label class="rbutton">A. Answer A
+								  <input type="radio" name="radio">
+								 	<span class="cmark"></span>
+								</label>
+							</div>
+
+							<div class="uk-width-1-2">
+	          		<label class="rbutton">B. Answer B
+								  <input type="radio" name="radio">
+								 	<span class="cmark"></span>
+								</label>
+							</div>
+
+							<div class="uk-width-1-2">
+	          		<label class="rbutton">C. Answer C
+								  <input type="radio" name="radio">
+								 	<span class="cmark"></span>
+								</label>
+							</div>
+
+							<div class="uk-width-1-2">
+	          		<label class="rbutton">D. Answer D
+								  <input type="radio" name="radio">
+								 	<span class="cmark"></span>
+								</label>
+							</div>
+          	</div>
+          
+						<hr>
+						<ul class="uk-pagination">
+					    <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a></li>
+					    <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next></span></a></li>
+						</ul>
+					</form>
+        </div>
+      </div>
 	  </div>
-	</nav>
 
-	<div class="jumbotron">
-		<div class="container">
-			
-		</div>
+	  <div class="uk-width-1-4">
+	  	<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+	      <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-xlarge" style="">
+        	<h3 class="uk-card-title uk-text-center">Checklist</h3>
+         	<hr>
+        </div>
+	    </div>
+	  </div>
 	</div>
-
-	<div class="container-fluid bg-light py-4">
-		<form class="form" role="form" autocomplete="off" action="" method="POST">
-			<div class="row">
-				<div class="col-md-6 mx-auto">
-					<div class="card card-body">
-						<h3 class="text-center mb-4">Question #1</h3>
-						
-						<h6>Check Box</h6><br>
-						
-						<p>Question</p>
-
-						<div class="row">
-							<div class="col-md-6 mx-auto">
-								<label class="container">A. Answer A
-								  <input type="checkbox">
-								  <span class="checkmark"></span>
-								</label>
-							</div>
-
-							<div class="col-md-6 mx-auto">
-								<label class="container">B. Answer B
-								  <input type="checkbox">
-								  <span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-						
-						
-						<div class="row">
-							<div class="col-md-6 mx-auto">
-								<label class="container">C. Answer C
-								  <input type="checkbox">
-								  <span class="checkmark"></span>
-								</label>
-							</div>
-
-							<div class="col-md-6 mx-auto">
-								<label class="container">D. Answer D
-								  <input type="checkbox">
-								  <span class="checkmark"></span>
-								</label>
-							</div>
-						</div>
-						
-						<br><h6>Radio Button</h6><br>
-
-						<p>Question</p>
-
-						<div class="row">
-							<div class="col-md-6 mx-auto">
-								<label class="rbutton">A. Answer A
-								   <input type="radio" name="radio">
-								  <span class="cmark"></span>
-								</label>
-							</div>
-
-							<div class="col-md-6 mx-auto">
-								<label class="rbutton">B. Answer B
-								  <input type="radio" name="radio">
-								   <span class="cmark"></span>
-								</label>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6 mx-auto">
-								<label class="rbutton">C. Answer C
-								  <input type="radio" name="radio">
-								   <span class="cmark"></span>
-								</label>
-							</div>
-
-							<div class="col-md-6 mx-auto">
-								<label class="rbutton">D. Answer D
-								  <input type="radio" name="radio">
-								   <span class="cmark"></span>
-								</label>
-							</div>
-						</div>
-						
-						<br>
-						<div class="row">
-							<div class="col-md-6 mx-auto">
-								<div class="d-flex justify-content-center">
-									<button type="button" class="btn btn-primary">Previous</button>
-									<button type="button" class="btn btn-primary" style="margin-left: 20px;">Next</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-
 	<!-- scripts -->
-	<script type="text/javascript" src="jquery-3.3.1.slim.min"></script>
-	<script type="text/javascript" src="popper.min.js"></script>
-	<script type="text/javascript" src="bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/uikit.min.js"></script>
+	<script type="text/javascript" src="scripts/uikit-icons.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 	<!-- scripts -->
 </body>
