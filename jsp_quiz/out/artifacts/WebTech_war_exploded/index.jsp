@@ -12,79 +12,67 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebTech Quiz</title>
-  <!-- <link rel="shortcut icon" href=""> -->
+  <link rel="shortcut icon" href="images/logo.png">
 
   <!-- styles -->
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/uikit.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <!-- styles -->
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">WebTech Quiz</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li> -->
-    </ul>
-  </div>
-</nav>
+  <div class="uk-child-width-1-2" uk-grid>
+    <div>
+      <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <img src="images/logo.png" style="width: 90%; margin-left: 10%;">
+      </div>
+    </div>
 
-<div class="jumbotron">
-  <div class="container">
+    <div>
+      <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+          <h3 class="uk-card-title uk-text-center">Create Quiz</h3>
+          <form role="form" autocomplete="off" action="/quiz" method="POST">
+            <div class="uk-margin">
+              <label class="uk-form-label" for="category" style="font-size: 16px;">1. Select Category of Quiz Questions.</label>
+              <div class="uk-form-controls">
+                <select class="uk-select uk-form-large" id="category" name="category">
+                  <option value="0">Front End: HTML, CSS</option>
+                  <option value="1">Scripting: JavaScript</option>
+                  <option value="2">Back End: PHP, Node.js, JavaServlet</option>
+                </select>
+              </div>
+            </div>
 
-  </div>
-</div>
+            <div class="uk-margin">
+              <label class="uk-form-label" for="type" style="font-size: 16px;">2. Select Type of Quiz.</label>
+              <div class="uk-form-controls">
+                <select class="uk-select uk-form-large" id="type" name="type">
+                  <option value="0">Multiple Choice</option>
+                  <option value="1">Fill in the Blanks</option>
+                </select>
+              </div>
+            </div>
 
-<div class="container-fluid bg-light py-4">
-  <form class="form" role="form" autocomplete="off" action="/quiz" method="POST">
-    <div class="row">
-      <div class="col-md-4 mx-auto">
-        <div class="card card-body">
-          <h3 class="text-center mb-4">Create Quiz</h3>
+            <div class="uk-margin">
+              <label class="uk-form-label" for="num_items" style="font-size: 16px;">3. Input Number of Quiz Items</label>
+              <div class="uk-form-controls">
+                <input class="uk-input uk-form-large" id="num_items" placeholder="Number of Items" name="num_items" type="text">
+              </div>
+            </div>
 
-          <!-- <div class="alert alert-danger">
-              <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Error: Example
-          </div> -->
-
-          <div class="form-group">
-            <select class="form-control input-lg" id="category" name="category">
-              <option value="0" selected>Topic Categories</option>
-              <option value="1">Category 1</option>
-              <option value="2">Category 2</option>
-              <option value="3">Category 3</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <select class="form-control input-lg" id="type" name="type">
-              <option value="0" selected>Type of Quiz</option>
-              <option value="1">Type 1</option>
-              <option value="2">Type 2</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <input class="form-control input-lg" placeholder="Number of Items" name="num_items" type="text">
-          </div>
-
-          <input class="btn btn-lg btn-primary btn-block" value="Start Quiz" name="activity" type="submit">
+            <div class="uk-margin">
+              <input class="uk-button uk-button-primary uk-button-large uk-width-1-1" value="Start Quiz" name="activity" type="submit">
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </form>
-</div>
-
-<!-- scripts -->
-<script type="text/javascript" src="jquery-3.3.1.slim.min"></script>
-<script type="text/javascript" src="popper.min.js"></script>
-<script type="text/javascript" src="bootstrap.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
-<!-- scripts -->
+  </div>
+  <!-- scripts -->
+  <script type="text/javascript" src="scripts/uikit.min.js"></script>
+  <script type="text/javascript" src="scripts/uikit-icons.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <!-- scripts -->
 </body>
 </html>

@@ -14,56 +14,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebTech Quiz</title>
-  <!-- <link rel="shortcut icon" href=""> -->
+  <link rel="shortcut icon" href="images/logo.png">
 
   <!-- styles -->
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/uikit.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <!-- styles -->
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">WebTech Quiz</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li> -->
-    </ul>
-  </div>
-</nav>
-
-<div class="jumbotron">
-  <div class="container">
-
-  </div>
-</div>
-<%
-  ArrayList<Question> questions = new ArrayList<>();
-  questions = (ArrayList<Question>) session.getAttribute("questions");
-%>
-<div class="container-fluid bg-light py-4">
-  <form class="form" role="form" autocomplete="off" action="/quiz" method="POST">
-    <div class="row">
-      <div class="col-md-6 mx-auto">
-        <div class="card card-body">
-          <h3 class="text-center mb-4">Result</h3>
-          <h1 class="text-center mb-4"> ${result} / <% out.print(questions.size()); %></h1>
-        </div>
+  <%
+    ArrayList<Question> questions = new ArrayList<>();
+    questions = (ArrayList<Question>) session.getAttribute("questions");
+  %>
+    <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+      <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-xlarge">
+        <h3 class="uk-card-title uk-text-center">Score: </h3>
+        <h1 class="uk-card-title uk-text-center"> ${result} / <% out.print(questions.size()); %></h1>
+        <br>
+<%--        <form role="form" autocomplete="off" action="/quiz" method="POST">--%>
+<%--          <input class="uk-button uk-button-primary uk-button-large uk-width-1-1" value="Start New Quiz" name="activity" type="submit">--%>
+<%--        </form>--%>
       </div>
     </div>
-  </form>
-</div>
-
-<!-- scripts -->
-<script type="text/javascript" src="jquery-3.3.1.slim.min"></script>
-<script type="text/javascript" src="popper.min.js"></script>
-<script type="text/javascript" src="bootstrap.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
-<!-- scripts -->
+  <!-- scripts -->
+  <script type="text/javascript" src="scripts/uikit.min.js"></script>
+  <script type="text/javascript" src="scripts/uikit-icons.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <!-- scripts -->
 </body>
 </html>

@@ -82,6 +82,10 @@ public class QuizServlet extends HttpServlet {
         }
       }
 
+      if (activity.equals("Start New Quiz")) {
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+      }
+
       request.setAttribute("result", result);
 
       request.getRequestDispatcher("/result.jsp").forward(request, response);

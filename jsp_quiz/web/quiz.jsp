@@ -14,102 +14,67 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WebTech Quiz</title>
-  <!-- <link rel="shortcut icon" href=""> -->
+  <link rel="shortcut icon" href="images/logo.png">
 
   <!-- styles -->
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/uikit.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <!-- styles -->
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">WebTech Quiz</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
-      </ul>
-    </div>
-  </nav>
-
-  <div class="jumbotron">
-    <div class="container">
-
-    </div>
-  </div>
   <%
     ArrayList<Question> questions = new ArrayList<>();
     questions = (ArrayList<Question>) session.getAttribute("questions");
     int itemNumber = (int) session.getAttribute("itemNumber");
   %>
-  <div class="container-fluid bg-light py-4">
-    <form class="form" role="form" autocomplete="off" action="/quiz" method="POST">
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <div class="card card-body">
-            <h3 class="text-center mb-4">Question #<% out.print(itemNumber + 1); %></h3>
+  <div class="uk-container-expand" uk-grid>
+    <div class="uk-width-3-4">
+      <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-xlarge" style="width: 70%;">
+          <h3 class="uk-card-title uk-text-center">Question #<% out.print(itemNumber + 1); %></h3>
+          <form role="form" autocomplete="off" action="/quiz" method="POST">
             <%
               out.print("<p>" + questions.get(itemNumber).getQuestion() + "</p>");
             %>
-            <br>
-            <div class="row">
-              <div class="col-md-6 mx-auto">
-                <div class="d-flex justify-content-center">
-                  <%
-                    if (itemNumber == 0 && questions.size() > 1) {
-                      out.print("<input class=\"btn btn-primary\" value=\"Next\" name=\"activity\" type=\"submit\">");
-                    } else if (itemNumber == questions.size() - 1 && questions.size() > 1){
-                      out.print("<input class=\"btn btn-primary\" value=\"Previous\" name=\"activity\" type=\"submit\">");
-                      out.print("<br><br><input class=\"btn btn-lg btn-outline-primary btn-block\" value=\"Submit\" name=\"activity\" name type=\"submit\">");
-                    } else if (questions.size() > 1) {
-                      out.print("<input class=\"btn btn-primary\" value=\"Previous\" name=\"activity\" type=\"submit\" style=\"margin-right: 20px;\">");
-                      out.print("<input class=\"btn btn-primary\" value=\"Next\" name=\"activity\" type=\"submit\">");
-                    }
-                  %>
-                </div>
-              </div>
-            </div>
-          </div>
+            <hr>
+            <ul class="uk-pagination">
+              <%
+                if (itemNumber == 0 && questions.size() > 1) {
+                  out.print("<li class=\"uk-margin-auto-left\"><input class=\"uk-button uk-button-primary\" value=\"Next\" name=\"activity\" type=\"submit\" style=\"color: #fff;\"></li>");
+                } else if (itemNumber == questions.size() - 1 && questions.size() > 1){
+                  out.print("<li><input class=\"uk-button uk-button-primary\" value=\"Previous\" name=\"activity\" type=\"submit\" style=\"color: #fff;\"></li>");
+                } else if (questions.size() > 1) {
+                  out.print("<li><input class=\"uk-button uk-button-primary\" value=\"Previous\" name=\"activity\" type=\"submit\" style=\"color: #fff;\"></li>");
+                  out.print("<li class=\"uk-margin-auto-left\"><input class=\"uk-button uk-button-primary\" value=\"Next\" name=\"activity\" type=\"submit\" style=\"color: #fff;\"></li>");
+                }
+              %>
+<%--              <li><input class="uk-button uk-button-primary" value="Previous" name="activity" type="submit" style="color: #fff;"></li>--%>
+<%--              <li class="uk-margin-auto-left"><input class="uk-button uk-button-primary" value="Next" name="activity" type="submit" style="color: #fff;"></li>--%>
+            </ul>
+
+            <%
+              if (questions.size() == 1 || itemNumber == questions.size() - 1) {
+                out.print("<input class=\"uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom\" value=\"Submit\" name=\"activity\" type=\"submit\">");
+              }
+            %>
+          </form>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
 
-  <div class="container bg-light py-4">
-    <form class="form" role="form" autocomplete="off" action="/check" method="POST">
-      <h4>Questions Status: </h4>
-      <hr>
-      <%
-        for (int i = 0; i < questions.size(); i++) {
-          if (questions.get(i).getUserAnswer() != null) {
-            out.print("<div class=\"text-center alert alert-success\" role=\"alert\" style=\"float: left; width:148px; margin: 5px 5px 0px 5px;\"> Question #" + (i + 1) + "</div>");
-          } else {
-            out.print("<div class=\"text-center alert alert-danger\" role=\"alert\" style=\"float: left; width: 148px; margin: 5px 5px 0px 5px;\"> Question #" + (i + 1) + "</div>");
-          }
-        }
-      %>
-      <div class="clearfix"></div>
-    </form>
+    <div class="uk-width-1-4">
+      <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+        <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-xlarge" style="">
+          <h3 class="uk-card-title uk-text-center">Checklist</h3>
+          <hr>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="container">
-    <h1>Test: Current Data</h1>
-    <%
-      for (int i = 0; i < questions.size(); i++) {
-        out.print("<p> " + questions.get(i).getQuestion() + "</p>");
-      }
-    %>
-  </div>
-
   <!-- scripts -->
-  <script type="text/javascript" src="jquery-3.3.1.slim.min"></script>
-  <script type="text/javascript" src="popper.min.js"></script>
-  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="scripts/uikit.min.js"></script>
+  <script type="text/javascript" src="scripts/uikit-icons.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
   <!-- scripts -->
 </body>
