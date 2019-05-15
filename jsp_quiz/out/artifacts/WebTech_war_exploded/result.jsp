@@ -32,9 +32,10 @@
         <h3 class="uk-card-title uk-text-center">Score: </h3>
         <h1 class="uk-card-title uk-text-center"> ${result} / <% out.print(questions.size()); %></h1>
         <br>
-<%--        <form role="form" autocomplete="off" action="/quiz" method="POST">--%>
-<%--          <input class="uk-button uk-button-primary uk-button-large uk-width-1-1" value="Start New Quiz" name="activity" type="submit">--%>
-<%--        </form>--%>
+        <form role="form" autocomplete="off" action="/quiz" method="POST">
+          <input class="uk-button uk-button-primary uk-button-large uk-width-1-1" value="Review Quiz" name="activity" type="submit">
+          <input class="uk-button uk-button-primary uk-button-large uk-width-1-1" value="Start New Quiz" name="activity" type="submit">
+        </form>
       </div>
     </div>
   <!-- scripts -->

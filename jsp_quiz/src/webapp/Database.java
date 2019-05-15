@@ -4,9 +4,19 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Created by: Dominic Pocaan
+ * Class for creating database object and
+ * other methods for querying database.
+ */
 public class Database {
   Connection connection;
 
+  /**
+   * Created by: Dominic Pocaan
+   * Create a new database connection.
+   * @return New database connection.
+   */
   public Connection getConnection() {
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -19,7 +29,16 @@ public class Database {
     return connection;
   }
 
-  public ArrayList<Question> getQuestions(int num_items) throws SQLException {
+  /**
+   * Created by: Dominic Pocaan
+   * Query all question from the current
+   * database connection.
+   * @param num_items Cumber of question to be queried.
+   * @param category Category of question.
+   * @return ArrayList of object Question.
+   * @throws SQLException
+   */
+  public ArrayList<Question> getQuestions(int num_items, int category) throws SQLException {
     ArrayList<Question> questionsQueried = new ArrayList<>();
     ArrayList<Question> questionsFinal   = new ArrayList<>();
 
@@ -30,12 +49,18 @@ public class Database {
     ResultSet rs = stmt.executeQuery("SELECT * FROM fillintheblanks");
 
     while(rs.next()) {
-      Question question = new Question(rs.getInt("id"), rs.getInt("category"), rs.getString("question"), rs.getString("correctAnswer"), null);
+      Question question = new Question(rs.getInt("id"), rs.getInt("category"), rs.getString("question"), rs.getString("correctAnswer"), null, false);
       questionsQueried.add(question);
     }
 
-    for (int i = 0; i < num_items; i++) {
-      questionsFinal.add(questionsQueried.get(i));
+    for (int i = 0; i < questionsQueried.size(); i++) {
+      if (questionsQueried.get(i).getCategory() == category) {
+        questionsFinal.add(questionsQueried.get(i));
+      }
+
+      if (questionsFinal.size() == num_items) {
+        break;
+      }
     }
 
     return questionsFinal;

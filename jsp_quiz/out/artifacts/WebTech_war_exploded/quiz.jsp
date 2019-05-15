@@ -49,8 +49,6 @@
                   out.print("<li class=\"uk-margin-auto-left\"><input class=\"uk-button uk-button-primary\" value=\"Next\" name=\"activity\" type=\"submit\" style=\"color: #fff;\"></li>");
                 }
               %>
-<%--              <li><input class="uk-button uk-button-primary" value="Previous" name="activity" type="submit" style="color: #fff;"></li>--%>
-<%--              <li class="uk-margin-auto-left"><input class="uk-button uk-button-primary" value="Next" name="activity" type="submit" style="color: #fff;"></li>--%>
             </ul>
 
             <%

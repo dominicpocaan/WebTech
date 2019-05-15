@@ -32,6 +32,18 @@
       <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
         <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
           <h3 class="uk-card-title uk-text-center">Create Quiz</h3>
+
+          <%
+            String error = (String) request.getAttribute("error");
+
+            if (error != null) {
+              out.print("<div class=\"uk-alert-danger\" uk-alert>\n" +
+                      "            <a class=\"uk-alert-close\" uk-close></a>\n" +
+                      "            <p>"+ error +"</p>\n" +
+                      "          </div>");
+            }
+          %>
+
           <form role="form" autocomplete="off" action="/quiz" method="POST">
             <div class="uk-margin">
               <label class="uk-form-label" for="category" style="font-size: 16px;">1. Select Category of Quiz Questions.</label>
@@ -57,7 +69,7 @@
             <div class="uk-margin">
               <label class="uk-form-label" for="num_items" style="font-size: 16px;">3. Input Number of Quiz Items</label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-form-large" id="num_items" placeholder="Number of Items" name="num_items" type="text">
+                <input class="uk-input uk-form-large" id="num_items" value="0" placeholder="Number of Items" name="num_items" type="text">
               </div>
             </div>
 
