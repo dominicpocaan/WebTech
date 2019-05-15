@@ -85,7 +85,7 @@ public class QuizServlet extends HttpServlet {
       sessionOrgQuestion = (ArrayList<String>) session.getAttribute("orgQuestion");
 
       String userAnswer = request.getParameter("user_answer");
-      session.setAttribute("previousAnswer", userAnswer);
+      //session.setAttribute("previousAnswer", userAnswer);
       if (userAnswer.replaceAll("\\s+","").length() != 0) {
         sessionQuestions.get(currentItemNumber).setUserAnswer(userAnswer);
         sessionQuestions.get(currentItemNumber).setQuestion(sessionOrgQuestion.get(currentItemNumber).replace("question", "<input value=\"" + userAnswer + "\"name=\"user_answer\" type=\"text\" style=\"width: " + (sessionQuestions.get(currentItemNumber).getCorrectAnswer().length() * 15) +"px\">"));

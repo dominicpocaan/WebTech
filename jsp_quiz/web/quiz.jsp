@@ -64,8 +64,21 @@
     <div class="uk-width-1-4">
       <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
         <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-xlarge" style="">
-          <h3 class="uk-card-title uk-text-center">Checklist</h3>
+          <h3 class="uk-card-title uk-text-center">Quiz Checklist</h3>
           <hr>
+          <%
+            for (int i = 0; i < questions.size(); i++) {
+              if (questions.get(i).getUserAnswer() != null) {
+                out.print("<div style=\"padding: 2px; background-color: green; color: white; text-align: center; width: 23px; float: left; margin: 5px 5px 5px 5px;\">\n" +
+                        "            " + (i + 1) + "\n" +
+                        "          </div>");
+              } else {
+                out.print("<div style=\"padding: 2px; background-color: red; color: white; text-align: center; width: 23px; float: left; margin: 5px 5px 5px 5px;\">\n" +
+                        "            " + (i + 1) + "\n" +
+                        "          </div>");
+              }
+            }
+          %>
         </div>
       </div>
     </div>
