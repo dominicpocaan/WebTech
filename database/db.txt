@@ -1,0 +1,5 @@
+multiple choice table
+question ID - 1, 2, 3
+question - [qst] ?
+choice - [a], [b], [c], [d]
+ans - [a]
