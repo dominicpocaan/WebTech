@@ -3,24 +3,16 @@
 <?php
 
 	$number = (int) $_GET['n'];
-
-
 	$query = "SELECT * FROM questions";
 	$results = $mysqli->query($query) or die($mysqli->error.__LINE__);
 	$total=$results->num_rows;
-
-
 	$query = "SELECT * FROM `questions` where question_number = $number";
 
 
 	$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 	$question = $result->fetch_assoc();
 
-
-
 	$query = "SELECT * FROM `choices` where question_number = $number";
-
-
 	$choices = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
  ?>
@@ -30,28 +22,7 @@
     <meta charset="utf-8" />
     <title>QUIZ</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
-		
-		<style>
-		a{
-    text-decoration:none;
-    display: inline-block;
-    padding: 8px 16px;
-}
-a:hover{
-    background-color: #ddd;
-    color: black;
-}
-
-.previous{
-    background-color:#flflfl;
-    color:black;
-}
-.next{
-    background-color: #4caff0;
-    color: white;
-    border-radius:5px;
-}
-		</style>
+	
   </head>
   <body>
     <div id="container">
@@ -77,10 +48,39 @@ a:hover{
 		<?php endwhile; ?>
 	      </ul>
 	      <input type="submit" value="submit" />
-				<a href="question.php" class="previous">&laquo;previous </a>
-				<a href="question.php" class="next">Next&raquo; </a>
 	      <input type="hidden" name="number" value="<?php echo $number; ?>" />
+				<?php
+				mysqli_select_db($mysqli, 'pagination');
+				$results_per_page = 1;
+
+				$query = "SELECT * FROM questions";
+				$result = mysqli_query($mysqli,$query);
+				$number_of_results = mysqli_num_rows($result);
+
+				
+
+				$number_of_pages = ceil($number_of_results/$results_per_page);
+
+				if (!isset($_GET['page'])){
+					$page = 1;
+				}else{
+					$page = $_GET['page'];
+				}
+
+				$this_page_first_result = ($page-1)*$results_per_page;
+				$query = "SELECT * FROM questions LIMIT " . $this_page_first_result . ',' . $results_per_page;
+				$result = mysqli_query($mysqli,$query);
+				while ($row = mysqli_fetch_array($result)){
+					echo $row['question_number'] . ' ' . $row['question'] . '<br>';
+				}
+
+
+				for ($page=1;$page<=$number_of_pages;$page++) {
+					echo '<a href="question.php?page=' . $page . '">' . $page . '</a>';
+				}
+				?>
 	</form>
+		
       </div>
     </div>
     </main>
