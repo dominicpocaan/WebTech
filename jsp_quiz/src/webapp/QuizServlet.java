@@ -27,35 +27,32 @@ public class QuizServlet extends HttpServlet {
     // If user activity is Start Quiz.
     if (activity.equals("Start Quiz")) {
       // Check if user input in Number of Items is correct.
-      // No need to check for type and category because they
+      // No need to check for category because the field
       // have a default value.
       if (Integer.parseInt(request.getParameter("num_items")) == 0 || Integer.parseInt(request.getParameter("num_items")) > 30) {
         request.setAttribute("error", "Invalid input for number of items. Valid input 0 to 30 number of items.");
         request.getRequestDispatcher("/index.jsp").forward(request, response);
       }
 
-      // If type is equal to multiple choice redirect to php page.
-      if (Integer.parseInt(request.getParameter("type")) == 0) {
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
-      } else {
-        // Query questions for the quiz according to the user input.
-        try {
-          questions = new Database().getQuestions(Integer.parseInt(request.getParameter("num_items")), Integer.parseInt(request.getParameter("category")));
-        } catch (SQLException e) {
-          e.printStackTrace();
-        }
 
-        for (int x = 0; x < questions.size(); x++) {
-          orgQuestion.add(questions.get(x).getQuestion());
-          questions.get(x).setQuestion(questions.get(x).getQuestion().replace("question", "<input name=\"user_answer\" type=\"text\" style=\"width: " + (questions.get(x).getCorrectAnswer().length() * 15) +"px;\">"));
-        }
-
-        // Start session for original string question,
-        // ArrayList of questions and current item number.
-        session.setAttribute("orgQuestion", orgQuestion);
-        session.setAttribute("questions", questions);
-        session.setAttribute("itemNumber", 0);
+      // Query questions for the quiz according to the user input.
+      try {
+        questions = new Database().getQuestions(Integer.parseInt(request.getParameter("num_items")), Integer.parseInt(request.getParameter("category")));
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
+
+      for (int x = 0; x < questions.size(); x++) {
+        orgQuestion.add(questions.get(x).getQuestion());
+        questions.get(x).setQuestion(questions.get(x).getQuestion().replace("question", "<input name=\"user_answer\" type=\"text\" style=\"width: " + (questions.get(x).getCorrectAnswer().length() * 15) +"px;\">"));
+      }
+
+      // Start session for original string question,
+      // ArrayList of questions and current item number.
+      session.setAttribute("orgQuestion", orgQuestion);
+      session.setAttribute("questions", questions);
+      session.setAttribute("itemNumber", 0);
+
       // If user activity is Previous.
     } else if (activity.equals("Previous")) {
       int previousItemNumber = (int) session.getAttribute("itemNumber") - 1;

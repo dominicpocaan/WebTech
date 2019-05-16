@@ -57,17 +57,7 @@
             </div>
 
             <div class="uk-margin">
-              <label class="uk-form-label" for="type" style="font-size: 16px;">2. Select Type of Quiz.</label>
-              <div class="uk-form-controls">
-                <select class="uk-select uk-form-large" id="type" name="type">
-                  <option value="0">Multiple Choice</option>
-                  <option value="1">Fill in the Blanks</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="uk-margin">
-              <label class="uk-form-label" for="num_items" style="font-size: 16px;">3. Input Number of Quiz Items</label>
+              <label class="uk-form-label" for="num_items" style="font-size: 16px;">1. Input Number of Quiz Items</label>
               <div class="uk-form-controls">
                 <input class="uk-input uk-form-large" id="num_items" value="0" placeholder="Number of Items" name="num_items" type="text">
               </div>
