@@ -1,4 +1,8 @@
 <?php
+
+  /*
+    Created by: Dominic Pocaan
+  */
 	session_start();
 
 	if (isset($_POST['activity'])) {

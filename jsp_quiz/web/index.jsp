@@ -57,7 +57,7 @@
             </div>
 
             <div class="uk-margin">
-              <label class="uk-form-label" for="num_items" style="font-size: 16px;">1. Input Number of Quiz Items</label>
+              <label class="uk-form-label" for="num_items" style="font-size: 16px;">2. Input Number of Quiz Items (1 - 30)</label>
               <div class="uk-form-controls">
                 <input class="uk-input uk-form-large" id="num_items" value="0" placeholder="Number of Items" name="num_items" type="text">
               </div>

@@ -1,16 +1,21 @@
 <?php
+	
+	/*
+		Created by: Dominic Pocaan
+		Class for creating object Question.
+	*/
 
 	class Question {
-		private $id;
-		private $category;
-		private $question;
-		private $correctAnswer;
-		private $answerA;
-		private $answerB;
-		private $answerC;
-		private $answerD;
-		private $userAnswer;
-		private $status;
+		private $id;            // Question id.
+		private $category;      // Category of question.
+		private $question;      // Question
+		private $correctAnswer; // Correct answer for the question.
+		private $answerA; 			// Answer for A 
+		private $answerB; 			// Answer for B
+		private $answerC; 			// Answer for C
+		private $answerD; 			// Answer for D
+		private $userAnswer; 		// User answer for the question.
+		private $status; 				// Current status if the user answer is right or wrong.
 
 		// public function __construc($id, $category, $question, $correctAnswer, $userAnswer, $status) {
 		// 	$this->id = $id;

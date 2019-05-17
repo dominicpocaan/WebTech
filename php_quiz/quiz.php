@@ -1,12 +1,20 @@
 <?php
+  /*
+    Created by: Dominic Pocaan, Jaybriane Tatel, Renz Willie
+  */
   session_start();
 
   include_once '/includes/question.php';
   include_once '/includes/access.php';
-
+  
   if ($_POST['activity'] == 'Start Quiz') {
     $category = $_POST['category'];
     $num_items = $_POST['num_items'];
+
+    if ($num_items == 0 || $num_items > 30) {
+      $_SESSION['error'] = 'Invalid input for number of items. Valid input 0 to 30 number of items.';
+      header("Location: index.php");
+    }
 
     $access = new Access();
     $questions = $access->getQuestions($num_items, $category);
@@ -83,6 +91,15 @@
 </head>
 
 <body>
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+    <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+      <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+          <li class="uk-active"><a href="index.php"><img src="images/logo.png" style="width: 80px;"></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
   <?php
 
     $questions = unserialize($_SESSION['questions']);

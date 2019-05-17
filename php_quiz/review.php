@@ -1,4 +1,7 @@
-<?php 
+<?php
+	/*
+		Created by: Dominic Pocaan
+	*/
 
 	session_start();
 

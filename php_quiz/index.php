@@ -1,3 +1,4 @@
+<!-- Created by: Dominic Pocaan -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,23 @@
       <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
         <div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
           <h3 class="uk-card-title uk-text-center">Create Quiz</h3>
+          <?php
+            session_start();
+
+            if (isset($_SESSION['error'])) {
+              $error = $_SESSION['error'];
+
+              if ($error != null) {
+                echo '
+                  <div class="uk-alert-danger" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p>' . $error . '</p>
+                  </div>
+                ';
+              }
+            }
+            
+          ?>
           <form role="form" autocomplete="off" action="quiz.php" method="POST">
             <div class="uk-margin">
               <label class="uk-form-label" for="category" style="font-size: 16px;">1. Select Category of Quiz Questions.</label>
@@ -37,7 +55,7 @@
             </div>
 
             <div class="uk-margin">
-              <label class="uk-form-label" for="num_items" style="font-size: 16px;">2. Input Number of Quiz Items</label>
+              <label class="uk-form-label" for="num_items" style="font-size: 16px;">2. Input Number of Quiz Items (1 - 30)</label>
               <div class="uk-form-controls">
                 <input class="uk-input uk-form-large" id="num_items" value="0" placeholder="Number of Items" name="num_items" type="text">
               </div>
