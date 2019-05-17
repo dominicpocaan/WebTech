@@ -33,7 +33,7 @@
       $currentItemNumber = count($sessionQuestions) - 1;
     }
 
-    if (isset($_POST['useranswer'])) {
+    if (isset($_POST['useranswer']) && $_POST['useranswer'] != null) {
       $sessionQuestions[$currentItemNumber]->setUserAnswer($_POST['useranswer']);
     }
 
@@ -136,6 +136,7 @@
                 } else if ($itemNumber == (count($questions) - 1) && count($questions) > 1) {
                   echo '<li><input class="uk-button uk-button-primary" value="Previous" name="activity" type="submit" style="color: #fff;"></li>';
                 } else if (count($questions) > 1) {
+                  echo '<li><input class="uk-button uk-button-primary" value="Previous" name="activity" type="submit" style="color: #fff;"></li>';
                   echo '<li class="uk-margin-auto-left"><input class="uk-button uk-button-primary" value="Next" name="activity" type="submit" style="color: #fff;"></li>';
                 }
               ?>
